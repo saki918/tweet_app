@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   # データベースで変更する物はpost
   post "post/:id/update" => "post#update"
   post 'post/:id/destroy' => 'post#destroy'
+  post "post/create" => "post#create"
 end
