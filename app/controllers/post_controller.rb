@@ -4,6 +4,8 @@ class PostController < ApplicationController
   end
 
   def index
+    # orderメソッドで一覧の並び替え。:ascだと古いものから新しいものに並べ替えられる。
+    # :desc で新しいものから順に並べ替え。
     @posts = Post.all.order(created_at: :asc)
   end
 

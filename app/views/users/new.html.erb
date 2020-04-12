@@ -3,12 +3,15 @@
     <div class="form-heading">新規ユーザー登録</div>
     <div class="form users-form">
       <div class="form-body">
+        <%# データの保存に失敗した場合、エラーメッセージ表示 %>
         <% @user.errors.full_messages.each do |message| %>
         <div class="form-error">
           <%= message %>
         </div>
         <% end %>
 
+        <%# form_tag ("送信先") %>
+        <%# 特定のモデルを指定しない場合 form_tag (例 検索) %>
         <%= form_tag ("/users/create") do %>
         <p>ユーザー名</p>
         <!-- <input>タグを用いて1行の入力フォームを作成してください -->

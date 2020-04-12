@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  # create には :id を付けない。
   post "users/create" => "users#create"
   get "signup" => "users#new"
   get 'users/index'
+  # id のURLは生成される番号以外の物も含まれてしまうので、なるべく下に記述する。
   get 'users/:id' => "users#show"
   get 'users/:id/edit' => "users#edit"
   post "users/:id/update" => "users#update"
