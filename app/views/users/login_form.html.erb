@@ -1,0 +1,24 @@
+<div class="main users-new">
+  <div class="container">
+    <div class="form-heading">ログイン</div>
+    <div class="form users-form">
+      <div class="form-body">
+        <%# もしエラーメッセージがあれば表示させるif文 %>
+        <% if @error_message %>
+        <div class="form-error">
+          <%= @error_message %>
+        </div>
+        <% end %>
+        <%= form_tag ("/login") do %>
+        <p>メールアドレス</p>
+        <input name="email" value="<%= @email %>">
+        <p>パスワード</p>
+        <!-- 以下のinputタグにtype属性を指定してください -->
+        <%# typeにpassword属性を追加すると、入力した項目が、隠されて入力できるようになる。 %>
+        <input type=" password" name="password" value="<%= @password %>">
+        <input type="submit" value="ログイン">
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,4 +3,5 @@ class User < ApplicationRecord
   validates :name, presence: true
   # uniqueness:true 同一のデータは保存させない。
   validates :email, presence: true, uniqueness: true
+  validates :password, presence: true
 end
