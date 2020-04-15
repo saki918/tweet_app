@@ -12,10 +12,12 @@
 
         <!-- フォームの送信先を指定してください -->
         <%# ()内は左から第一引数、第二引数 画像を送信したい時は、{multipart: true}を記述する %>
-        <%= form_tag ("/users/#{@user.id}/update", {multipart: true}) do %>
+        <%= form_tag("/users/#{@user.id}/update", {multipart: true}) do %>
         <p>ユーザー名</p>
         <!-- name属性を設定してください -->
         <input name="name" value="<%= @user.name %>">
+        <p>画像</p>
+        <input name="image" type="file">
         <p>メールアドレス</p>
         <!-- name属性を設定してください -->
         <input name="email" value="<%= @user.email %>">

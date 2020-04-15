@@ -1,8 +1,17 @@
 <div class="main posts-index">
   <div class="container">
-    <% @posts.each do |f| %>
+    <% @posts.each do |post| %>
     <div class="posts-index-item">
-      <%= link_to f.content, "/post/#{f.id}" %>
+      <div class="post-left">
+        <img src="<%= "/#{post.user.image_name}" %>">
+      </div>
+      <div class="post-right">
+        <div class="post-user-name">
+          <%# <%= binding.pry %>
+          <%= link_to post.user.name, "/users/#{post.user_id}" %>
+        </div>
+        <%= link_to post.content, "/post/#{post.id}" %>
+      </div>
     </div>
     <% end %>
   </div>

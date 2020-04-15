@@ -1,6 +1,14 @@
 <div class="main posts-show">
   <div class="container">
     <div class="posts-show-item">
+      <div class="post-user-name">
+        <!-- ユーザーの画像が表示されるように、以下のsrcの中を埋めてください -->
+        <%# ファイルパスを指定 %>
+        <img src="<%= "/#{@user.image_name}" %>">
+
+        <!-- link_toメソッドを用いて、ユーザー詳細ページへのリンクを作成してください -->
+        <%= link_to @user.name, "/users/#{@user.id}" %>
+      </div>
       <p>
         <%= @post.content %>
       </p>
@@ -8,8 +16,10 @@
         <%= @post.created_at %>
       </div>
       <div class="post-menus">
+        <% if @post.user.id == @current_user.id %>
         <%= link_to("編集", "/post/#{@post.id}/edit") %>
         <%= link_to("削除", "/post/#{@post.id}/destroy",{method:"post"}) %>
+        <% end %>
       </div>
     </div>
   </div>

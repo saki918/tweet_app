@@ -1,5 +1,6 @@
 class PostController < ApplicationController
   before_action :authenticate_user
+  before_action :ensure_correct_user, only: [:edit,:update,:destroy]
   def new
     @post = Post.new
   end
@@ -12,6 +13,10 @@ class PostController < ApplicationController
 
   def show
     @post = Post.find_by(id: params[:id])
+    # ⬇︎postを作成したユーザーの情報を持ってくる。
+    # @user = User.find_by(id: @post.user_id)
+    # モデルで作成したインスタンスメソッドを使ってユーザー情報を持ってくる。
+    @user = @post.user
   end
 
   def edit
@@ -19,7 +24,7 @@ class PostController < ApplicationController
   end
 
   def create
-    @post = Post.new(content: params[:content])
+    @post = Post.new(content: params[:content],user_id: @current_user.id)
     if @post.save
       flash[:notice] = '投稿を作成しました'
       redirect_to('/post/index')
@@ -45,5 +50,12 @@ class PostController < ApplicationController
     flash[:notice] = '投稿を削除しました'
     redirect_to '/post/index'
   end
-
+  # 投稿したユーザー以外に編集や削除の権限を与えない
+  def ensure_correct_user
+    @post = Post.find_by(id: params[:id])
+    if @post.user_id != @current_user.id
+      flash[:notice] = '権限がありません'
+      redirect_to '/post/index'
+    end
+  end
 end

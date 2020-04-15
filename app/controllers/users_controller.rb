@@ -42,13 +42,14 @@ class UsersController < ApplicationController
     @user.name = params[:name]
     @user.email = params[:email]
     # もし画像が更新されたときのif文分岐
+    # params[:***] ***はname属性で記述した名前を記入する。カラム名ではない
     if params[:image]
       # 画像のデータファイル名はデータベースに保存
       @user.image_name = "#{@user.id}.jpg"
       image = params[:image]
       # 画像保存の際はbinwriteを使用。readメソッドで画像データを取得
       # 画像データ自身はフォルダ内に保存する。
-      File.binwrite("public/user_images/#{@user.image_name}", image.read)
+      File.binwrite("public/#{@user.image_name}", params[:image].read)
     end
     if @user.save
       flash[:notice] = 'ユーザー情報を編集しました'
