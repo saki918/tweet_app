@@ -93,6 +93,14 @@ class UsersController < ApplicationController
     redirect_to "/login"
   end
 
+  def likes
+    # 変数@userを定義してください
+    @user = User.find_by(id: params[:id])
+
+    # 変数@likesを定義してください
+    @likes = Like.where(user_id: @user.id)
+  end
+
   # もしログインユーザーとパラメータで受け取る数値が異なる場合
   def ensure_correct_user
     if @current_user.id != params[:id].to_i

@@ -15,6 +15,19 @@
       <div class="post-time">
         <%= @post.created_at %>
       </div>
+      <% if Like.find_by(user_id: @current_user.id, post_id: @post.id) %>
+      <!-- アイコンが表示できるように、以下のlink_toメソッドを書き換えてください -->
+      <%# アイコンなどrbタグで記述できない物はlink_to URL do ~ end で囲む %>
+      <%= link_to("/likes/#{@post.id}/destroy", {method: "post"}) do %>
+      <span class="fa fa-heart like-btn-unlike"></span>
+      <% end %>
+      <% else %>
+      <!-- アイコンが表示できるように、以下のlink_toメソッドを書き換えてください -->
+      <%= link_to("/likes/#{@post.id}/create", {method: "post"}) do %>
+      <span class="fa fa-heart like-btn"></span>
+      <% end %>
+      <% end %>
+      <%= @likes_count %>
       <div class="post-menus">
         <% if @post.user.id == @current_user.id %>
         <%= link_to("編集", "/post/#{@post.id}/edit") %>

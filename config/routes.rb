@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  post 'likes/:post_id/create' => 'likes#create'
+  post "likes/:post_id/destroy" => "likes#destroy"
+
   get "login" => "users#login_form"
   post "login" => "users#login"
   post "logout" => "users#logout"
@@ -8,6 +11,7 @@ Rails.application.routes.draw do
   get 'users/index'
   # id のURLは生成される番号以外の物も含まれてしまうので、なるべく下に記述する。
   get 'users/:id' => "users#show"
+  get "users/:id/likes" => "users#likes"
   get 'users/:id/edit' => "users#edit"
   post "users/:id/update" => "users#update"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

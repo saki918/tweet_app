@@ -17,6 +17,7 @@ class PostController < ApplicationController
     # @user = User.find_by(id: @post.user_id)
     # モデルで作成したインスタンスメソッドを使ってユーザー情報を持ってくる。
     @user = @post.user
+    @likes_count = Like.where(post_id: @post.id).count
   end
 
   def edit

@@ -8,13 +8,14 @@
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <script src="https://kit.fontawesome.com/8f2e8aefa8.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
   <header>
     <div class="header-logo">
       <% if @current_user %>
-      <%= link_to("TweetApp", "/post/index") %>
+      <%= link_to("TweetApp", "/posts/index") %>
       <% else %>
       <%= link_to("TweetApp", "/") %>
       <% end %>
