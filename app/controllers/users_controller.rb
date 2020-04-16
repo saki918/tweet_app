@@ -65,10 +65,11 @@ class UsersController < ApplicationController
 
   def login
     # 入力内容と一致するユーザーを取得し、変数@userに代入してください
-    # パスワードとEメールが一致しているユーザーを検索する。
-    @user = User.find_by(email: params[:email], password: params[:password])
-    # @userが存在するかどうかを判定するif文を作成してください
-    if @user
+    # Eメールが一致しているユーザーを検索する。
+    @user = User.find_by(email: params[:email])
+    # @userのemailかつ、パスワードが一致しているユーザーが存在するかどうかを判定するif文を作成してください
+    # authenticateメソッドは渡された引数を暗号化し、password_digestの値と一致するかどうかを判定
+    if @user && @user.authenticate(params[:password])
       # 変数sessionに、ログインに成功したユーザーのidを代入してください
       # sessionにブラウザ上でユーザーの保存情報を保持させる。
       session[:user_id] = @user.id
